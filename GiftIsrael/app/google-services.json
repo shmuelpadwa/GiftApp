@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "816373724579",
+    "firebase_url": "https://gift-israel.firebaseio.com",
+    "project_id": "gift-israel",
+    "storage_bucket": "gift-israel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816373724579:android:5e71c9361c7b9784",
+        "android_client_info": {
+          "package_name": "com.example.brandonmayle.giftisrael"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816373724579-8n86lk2u10j0ijvcgnraj7s8mvv3htqh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.brandonmayle.giftisrael",
+            "certificate_hash": "cdf0a36da14baf96258898d76955d945f7b0d452"
+          }
+        },
+        {
+          "client_id": "816373724579-fc8da6pu5r1hqslpcr532qaa5bas6f3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHtmIzUgRLUm5tstg3toJs6nCi1aKanlE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816373724579-fc8da6pu5r1hqslpcr532qaa5bas6f3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

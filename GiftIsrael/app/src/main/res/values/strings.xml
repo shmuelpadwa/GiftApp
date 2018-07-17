@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">GIFT Israel</string>
+    <string name="title_activity_record">Volunteer Log</string>
+    <string name="title_activity_search">Map</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_add">Record an Activity</string>
+    <string name="title_activity_about">About GIFT Israel</string>
+    <string name="about_text">"Welcome to GIFT Israel!
+ברוכים הבאים לGIFT Israel
+\n\n
+<b>GIFT</b> (Give It Forward Today) inspires and educates young people to become givers and facilitates volunteering and the innovation of projects helping those in need across the community.
+​\n\n
+<b>GIFT</b> strives to inspire thousands of volunteers to lend a helping hand, delivering weekly food parcels and practical help to over 2,000 members of the community.
+\n\n
+Contact us: 0208 457 4429
+\n\n
+<b>גיפת</b> מעניקה השראה וחינוך של צעירים להפוך לנותנים ומסייעת בהתנדבות ובחדשנות של פרויקטים המסייעים לנזקקים בכל רחבי הקהילה.
+\n\n
+<b>גיפת</b> שואפת לעורר אלפי מתנדבים להושיט יד מסייעת, לספק חבילות מזון לשבוע ולסייע ליותר מאלפיים חברי הקהילה.
+\n\n
+צור קשר: 0208 457 4429"
+    </string>
+    <string name="title_activity_date_and_time">Record an Activity</string>
+    <string name="title_activity_location">Record an Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date">Enter date here</string>
+    <string name="time">Enter time here</string>
+    <string name="title_activity_hours">Record an Activity</string>
+    <string name="title_activity_description">Record an Activity</string>
+</resources>

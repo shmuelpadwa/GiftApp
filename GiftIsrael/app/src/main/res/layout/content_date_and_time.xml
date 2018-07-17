@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.brandonmayle.giftisrael.DateAndTimeActivity"
+    tools:showIn="@layout/activity_date_and_time">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/dateAndTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please enter the date and time of your volunteering activity.\n\nנא להזין את התאריך והשעה של פעילות ההתנדבות שלך."
+            android:textAlignment="center"
+            android:textSize="4mm"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16sp" />
+
+        <Button
+            android:id="@+id/dateButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Select Date"
+            android:textSize="3.5mm"
+            android:onClick="showDatePickerDialog" />
+
+        <TextView
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/dateButton"
+            android:text="@string/date"
+            android:textSize="3mm"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/timeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Select Time"
+            android:textSize="3.5mm"
+            android:onClick="showTimePickerDialog"
+            android:layout_below="@+id/dateText"
+            android:layout_marginTop="16sp" />
+
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/timeButton"
+            android:text="@string/time"
+            android:textSize="3mm"
+            android:textAlignment="center" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
