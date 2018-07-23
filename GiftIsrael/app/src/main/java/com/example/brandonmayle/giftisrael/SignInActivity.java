@@ -1,6 +1,7 @@
 package com.example.brandonmayle.giftisrael;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -15,12 +17,29 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageException;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -101,8 +120,108 @@ public class SignInActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+
+                            // Check to see if activityCount.txt exists; if not, create it
+                            final FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            final DatabaseReference uRef = database.getReference(user.getUid());
+                            uRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.child("count").exists()) {
+
+                                    } else {
+                                        uRef.child("count").setValue(0);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+//                            FirebaseStorage storage = FirebaseStorage.getInstance();
+//                            StorageReference storageRef = storage.getReference();
+//                            storageRef.child(mAuth.getUid() + "/activityCount.txt").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//
+//                                }
+//                            }).addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception exception) {
+//                                    // Create local file to log activity count
+//                                    File mFolder = new File(getFilesDir() + user.getUid());
+//                                    File file = new File(mFolder.getAbsolutePath() + "/activityCount.txt");
+//                                    if (!mFolder.exists()) {
+//                                        mFolder.mkdir();
+//                                    }
+//                                    if (!file.exists()) {
+//                                        try {
+//                                            file.createNewFile();
+//
+//                                            // Populate local file with activity count
+//                                            String count = "0";
+//                                            byte[] bytes = count.getBytes();
+//
+//                                            FileOutputStream fos;
+//                                            try {
+//                                                fos = new FileOutputStream(file);
+//
+//                                                fos.write(bytes);
+//                                                fos.close();
+//                                            } catch (FileNotFoundException e) {
+//                                                e.printStackTrace();
+//                                            } catch (IOException e) {
+//                                                e.printStackTrace();
+//                                            }
+//                                        } catch (IOException e) {
+//                                            e.printStackTrace();
+//                                        }
+//                                    }
+//
+//                                    // Upload file to Firebase storage
+//                                    FirebaseStorage storage = FirebaseStorage.getInstance();
+//                                    StorageReference storageRef = storage.getReference();
+//                                    StorageMetadata metadata = new StorageMetadata.Builder()
+//                                            .setContentType("text/txt")
+//                                            .build();
+//                                    Uri uFile = Uri.fromFile(file);
+//
+//                                    UploadTask uploadTask = storageRef.child(user.getUid()+"/"+uFile.getLastPathSegment()).putFile(uFile, metadata);
+//                                    uploadTask.addOnFailureListener(new OnFailureListener() {
+//                                        @Override
+//                                        public void onFailure(@NonNull Exception exception) {
+//                                            int errorCode = ((StorageException) exception).getErrorCode();
+//                                            String errorMessage = exception.getMessage();
+//                                        }
+//                                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                                        @Override
+//                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                                        }
+//                                    });
+//                                }
+//                            });
+
+                            uRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.child("survey").exists()) {
+                                        updateUI(user);
+                                    } else {
+                                        // fill out survey
+                                        System.out.println("filling out survey");
+                                        updateUI(user);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -114,22 +233,9 @@ public class SignInActivity extends AppCompatActivity {
                 });
     }
 
-//    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-//        try {
-//            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-//
-//            // Signed in successfully, show authenticated UI.
-//            updateUI(account);
-//        } catch (ApiException e) {
-//            // The ApiException status code indicates the detailed failure reason.
-//            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-////            Log.w(, "signInResult:failed code=" + e.getStatusCode());
-//            updateUI(null);
-//        }
-//    }
-
     private void updateUI(FirebaseUser account) {
         if (account != null) {
+            Toast.makeText(SignInActivity.this, "Signed in to GIFT Israel.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

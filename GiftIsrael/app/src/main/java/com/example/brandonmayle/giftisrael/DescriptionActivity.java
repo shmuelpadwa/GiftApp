@@ -1,6 +1,8 @@
 package com.example.brandonmayle.giftisrael;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +15,8 @@ import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageMetadata;
@@ -38,31 +42,13 @@ public class DescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText descriptionText = (EditText) findViewById(R.id.descriptionField);
-                String description = "Description of activity: " + descriptionText.getText().toString();
-                byte[] bytes = description.getBytes();
-                File mFolder = new File(getFilesDir() + "/sample");
-                File file = new File(mFolder.getAbsolutePath() + "/dummyActivity.txt");
-                if (!mFolder.exists()) {
-                    mFolder.mkdir();
-                }
-                if (!file.exists()) {
-                    try {
-                        file.createNewFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                FileOutputStream fos;
-                try {
-                    fos = new FileOutputStream(file, true);
+                String description = descriptionText.getText().toString();
 
-                    fos.write(bytes);
-                    fos.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                SharedPreferences sharedPref = getSharedPreferences("com.example.brandonmayle.giftisrael.filePreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("description", description);
+                editor.commit();
+
                 nextActivity();
             }
         });

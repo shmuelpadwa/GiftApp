@@ -36,5 +36,13 @@
             android:textSize="2.5mm"
             android:onClick="returnToLog" />
 
+        <TextView
+            android:id="@+id/prefsView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thankYouText"
+            android:layout_centerHorizontal="true"
+            android:text="" />
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.example.brandonmayle.giftisrael;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageMetadata;
@@ -41,34 +45,15 @@ public class DateAndTimeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 TextView dateText = (TextView) findViewById(R.id.dateText);
                 TextView timeText = (TextView) findViewById(R.id.timeText);
-                String date = "Date: " + dateText.getText().toString() + "\n";
-                String time = "Time: " + timeText.getText().toString() + "\n";
-                byte[] bytesD = date.getBytes();
-                byte[] bytesT = time.getBytes();
-                File mFolder = new File(getFilesDir() + "/sample");
-                File file = new File(mFolder.getAbsolutePath() + "/dummyActivity.txt");
-                if (!mFolder.exists()) {
-                    mFolder.mkdir();
-                }
-                if (!file.exists()) {
-                    try {
-                        file.createNewFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                FileOutputStream fos;
-                try {
-                    fos = new FileOutputStream(file, true);
+                String date = dateText.getText().toString();
+                String time = timeText.getText().toString();
 
-                    fos.write(bytesD);
-                    fos.write(bytesT);
-                    fos.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                SharedPreferences sharedPref = getSharedPreferences("com.example.brandonmayle.giftisrael.filePreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("date", date);
+                editor.putString("time", time);
+                editor.commit();
+
                 nextActivity();
             }
         });

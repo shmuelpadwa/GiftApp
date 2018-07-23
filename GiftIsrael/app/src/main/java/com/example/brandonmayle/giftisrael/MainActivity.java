@@ -69,13 +69,13 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     }
 
     public void popToRecordActivity(View view) {
-        Intent intent1 = new Intent(this, RecordActivity.class);
-        startActivity(intent1);
+        Intent intent = new Intent(this, RecordActivity.class);
+        startActivity(intent);
     }
 
     public void popToSearchActivity(View view) {
-        Intent intent2 = new Intent(this, SearchActivity.class);
-        startActivity(intent2);
+        Intent intent = new Intent(this, SearchActivity.class);
+        startActivity(intent);
     }
 
     public void goToUrl(String url) {
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     }
 
     public void instagramButton(View view) {
-        goToUrl("http://instagram.com/giftcharity");
+        goToUrl("http://instagram.com/jgiftisrael");
     }
 
     public void youtubeButton(View view) {
@@ -105,12 +105,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     }
 
     public void about() {
-        Intent intent3 = new Intent(this, AboutActivity.class);
-        startActivity(intent3);
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
     }
 
     public void signOut() {
-        Intent intent4 = new Intent(this, SignOutActivity.class);
-        startActivity(intent4);
+        Intent intent = new Intent(this, SignOutActivity.class);
+        startActivity(intent);
     }
 }
