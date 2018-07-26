@@ -14,7 +14,7 @@
         android:icon="@mipmap/gift_israel_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
@@ -33,7 +33,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyCDOu3fLMFYc4_qf4-hzU0HRoGO9ipkJMw" />
 
         <activity
             android:name=".SearchActivity"
@@ -93,8 +93,44 @@
         </activity>
         <activity
             android:name=".ThankYouActivity"
-            android:label="Record an Activity">
+            android:label="Record an Activity" />
+        <activity
+            android:name=".SurveyActivity"
+            android:label="@string/title_activity_survey"
+            android:parentActivityName=".SignInActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandonmayle.giftisrael.SignInActivity" />
         </activity>
+        <activity
+            android:name=".Survey2Activity"
+            android:label="@string/title_activity_survey2"
+            android:parentActivityName=".SurveyActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandonmayle.giftisrael.SurveyActivity" />
+        </activity>
+        <activity
+            android:name=".Survey3Activity"
+            android:label="@string/title_activity_survey3"
+            android:parentActivityName=".Survey2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandonmayle.giftisrael.Survey2Activity" />
+        </activity>
+        <activity
+            android:name=".Survey4Activity"
+            android:label="@string/title_activity_survey4"
+            android:parentActivityName=".Survey3Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandonmayle.giftisrael.Survey3Activity" />
+        </activity>
+        <activity android:name=".FinishSurveyActivity"></activity>
     </application>
 
 </manifest>

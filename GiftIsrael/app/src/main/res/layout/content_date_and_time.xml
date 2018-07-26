@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/dateButton"
-            android:text="@string/date"
+            android:hint="@string/date"
             android:textSize="3mm"
             android:textAlignment="center" />
 
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/timeButton"
-            android:text="@string/time"
+            android:hint="@string/time"
             android:textSize="3mm"
             android:textAlignment="center" />
 

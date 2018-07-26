@@ -50,7 +50,7 @@ public class RecordActivity extends AppCompatActivity {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference uRef = database.getReference(user.getUid());
+    DatabaseReference uRef = database.getReference("users").child(user.getDisplayName() + "_" + user.getUid());
     DatabaseReference activitiesRef = uRef.child("activities");
     ArrayList<String> list = new ArrayList<String>();
 
@@ -67,7 +67,7 @@ public class RecordActivity extends AppCompatActivity {
     }
 
     public void readCount() {
-        uRef.child("count").addListenerForSingleValueEvent(new ValueEventListener() {
+        uRef.child("count").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -88,7 +88,7 @@ public class RecordActivity extends AppCompatActivity {
     public void queryDatabase(long value) {
         for (int i = 0; i < value; ++i) {
             DatabaseReference nameRef = activitiesRef.child("activity" + i).child("name");
-            nameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            nameRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     String value = dataSnapshot.getValue(String.class);
@@ -107,7 +107,7 @@ public class RecordActivity extends AppCompatActivity {
     }
 
     public void displayList(ArrayList<String> list) {
-        ListView listView = (ListView) findViewById(R.id.listView);
+        ListView listView = (ListView) findViewById(R.id.logView);
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.listview, list);
         listView.setAdapter(adapter);
 

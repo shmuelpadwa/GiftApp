@@ -48,7 +48,7 @@ public class ThankYouActivity extends AppCompatActivity {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference uRef = database.getReference(user.getUid());
+    DatabaseReference uRef = database.getReference("users").child(user.getDisplayName() + "_" + user.getUid());
 
     public static final String TAG = "ThankYouActivity";
 

@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.brandonmayle.giftisrael.LocationActivity"
-    tools:showIn="@layout/activity_location">
+    tools:context="com.example.brandonmayle.giftisrael.FinishSurveyActivity">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -15,35 +13,34 @@
         tools:layout_editor_absoluteX="8dp">
 
         <TextView
-            android:id="@+id/locationText"
+            android:id="@+id/finishSurveyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please enter the location of your volunteering activity.\n\nנא להזין את מיקום פעילות ההתנדבות שלך."
-            android:textAlignment="center"
-            android:textSize="4mm"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp" />
+            android:layout_margin="16sp"
+            android:text="Thank you for completing our survey! Please review your answers and click 'Finish'."
+            android:textSize="4mm"
+            android:textAlignment="center" />
 
         <Button
-            android:id="@+id/locationButton"
+            android:id="@+id/finishButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Select Location"
-            android:textSize="3.5mm"
-            android:onClick="showDatePickerDialog" />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16sp"
+            android:text="Finish/סִיוּם"
+            android:textSize="2.5mm" />
 
         <TextView
-            android:id="@+id/locationResult"
+            android:id="@+id/prefsView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/finishSurveyText"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/locationButton"
-            android:text=""
-            android:textSize="3mm"
-            android:textAlignment="center" />
+            android:text="" />
 
     </RelativeLayout>
 

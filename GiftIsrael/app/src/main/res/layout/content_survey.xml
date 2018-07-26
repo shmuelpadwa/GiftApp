@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B3FFFF"
+    android:backgroundTint="#B3FFFF"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.brandonmayle.giftisrael.SurveyActivity"
+    tools:showIn="@layout/activity_survey">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" >
+
+        <TextView
+            android:id="@+id/surveyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Since it's your first time logging in, we'd like to ask you a few questions about volunteering.\n#1: How many hours did you volunteer in the last Jewish year?\n\n# 1: כמה שעות התנדבת בשנה האחרונה?מכיוון שזו הפעם הראשונה שאתה מתחבר, ברצוננו לשאול אותך כמה שאלות על התנדבות"
+            android:textAlignment="center"
+            android:textSize="4mm"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16sp" />
+
+        <EditText
+            android:id="@+id/surveyField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/surveyText"
+            android:inputType="numberDecimal"
+            android:hint="Enter hours here" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

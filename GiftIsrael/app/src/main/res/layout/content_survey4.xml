@@ -4,46 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B3FFFF"
+    android:backgroundTint="#B3FFFF"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.brandonmayle.giftisrael.LocationActivity"
-    tools:showIn="@layout/activity_location">
+    tools:context="com.example.brandonmayle.giftisrael.Survey4Activity"
+    tools:showIn="@layout/activity_survey4">
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" >
 
         <TextView
-            android:id="@+id/locationText"
+            android:id="@+id/survey4Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please enter the location of your volunteering activity.\n\nנא להזין את מיקום פעילות ההתנדבות שלך."
+            android:text="4. How many hours would you like to volunteer in the coming Jewish year?"
             android:textAlignment="center"
             android:textSize="4mm"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp" />
+            android:layout_margin="16sp" />
 
-        <Button
-            android:id="@+id/locationButton"
+        <EditText
+            android:id="@+id/survey4Field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Select Location"
-            android:textSize="3.5mm"
-            android:onClick="showDatePickerDialog" />
-
-        <TextView
-            android:id="@+id/locationResult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/locationButton"
-            android:text=""
-            android:textSize="3mm"
-            android:textAlignment="center" />
+            android:inputType="number"
+            android:hint="Enter hours here" />
 
     </RelativeLayout>
 

@@ -124,7 +124,7 @@ public class SignInActivity extends AppCompatActivity {
                             // Check to see if activityCount.txt exists; if not, create it
                             final FirebaseUser user = mAuth.getCurrentUser();
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            final DatabaseReference uRef = database.getReference(user.getUid());
+                            final DatabaseReference uRef = database.getReference("users").child(user.getDisplayName() + "_" + user.getUid());
                             uRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -133,86 +133,11 @@ public class SignInActivity extends AppCompatActivity {
                                     } else {
                                         uRef.child("count").setValue(0);
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
-
-//                            FirebaseStorage storage = FirebaseStorage.getInstance();
-//                            StorageReference storageRef = storage.getReference();
-//                            storageRef.child(mAuth.getUid() + "/activityCount.txt").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                                @Override
-//                                public void onSuccess(Uri uri) {
-//
-//                                }
-//                            }).addOnFailureListener(new OnFailureListener() {
-//                                @Override
-//                                public void onFailure(@NonNull Exception exception) {
-//                                    // Create local file to log activity count
-//                                    File mFolder = new File(getFilesDir() + user.getUid());
-//                                    File file = new File(mFolder.getAbsolutePath() + "/activityCount.txt");
-//                                    if (!mFolder.exists()) {
-//                                        mFolder.mkdir();
-//                                    }
-//                                    if (!file.exists()) {
-//                                        try {
-//                                            file.createNewFile();
-//
-//                                            // Populate local file with activity count
-//                                            String count = "0";
-//                                            byte[] bytes = count.getBytes();
-//
-//                                            FileOutputStream fos;
-//                                            try {
-//                                                fos = new FileOutputStream(file);
-//
-//                                                fos.write(bytes);
-//                                                fos.close();
-//                                            } catch (FileNotFoundException e) {
-//                                                e.printStackTrace();
-//                                            } catch (IOException e) {
-//                                                e.printStackTrace();
-//                                            }
-//                                        } catch (IOException e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                    }
-//
-//                                    // Upload file to Firebase storage
-//                                    FirebaseStorage storage = FirebaseStorage.getInstance();
-//                                    StorageReference storageRef = storage.getReference();
-//                                    StorageMetadata metadata = new StorageMetadata.Builder()
-//                                            .setContentType("text/txt")
-//                                            .build();
-//                                    Uri uFile = Uri.fromFile(file);
-//
-//                                    UploadTask uploadTask = storageRef.child(user.getUid()+"/"+uFile.getLastPathSegment()).putFile(uFile, metadata);
-//                                    uploadTask.addOnFailureListener(new OnFailureListener() {
-//                                        @Override
-//                                        public void onFailure(@NonNull Exception exception) {
-//                                            int errorCode = ((StorageException) exception).getErrorCode();
-//                                            String errorMessage = exception.getMessage();
-//                                        }
-//                                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                                        @Override
-//                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                                        }
-//                                    });
-//                                }
-//                            });
-
-                            uRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.child("survey").exists()) {
                                         updateUI(user);
                                     } else {
-                                        // fill out survey
-                                        System.out.println("filling out survey");
-                                        updateUI(user);
+                                        popToSurveyActivity();
                                     }
                                 }
 
@@ -235,9 +160,13 @@ public class SignInActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser account) {
         if (account != null) {
-            Toast.makeText(SignInActivity.this, "Signed in to GIFT Israel.", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void popToSurveyActivity() {
+        Intent intent = new Intent(this, SurveyActivity.class);
+        startActivity(intent);
     }
 }

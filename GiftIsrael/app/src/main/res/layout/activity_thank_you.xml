@@ -33,8 +33,7 @@
             android:layout_alignParentRight="true"
             android:layout_margin="16sp"
             android:text="Finish/סִיוּם"
-            android:textSize="2.5mm"
-            android:onClick="returnToLog" />
+            android:textSize="2.5mm" />
 
         <TextView
             android:id="@+id/prefsView"
@@ -45,4 +44,5 @@
             android:text="" />
 
     </RelativeLayout>
+
 </android.support.constraint.ConstraintLayout>

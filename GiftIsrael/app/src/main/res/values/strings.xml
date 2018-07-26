@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">GIFT Israel</string>
     <string name="title_activity_record">Volunteer Log</string>
-    <string name="title_activity_search">Map</string>
+    <string name="title_activity_search">Search for Opportunities</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add">Record an Activity</string>
     <string name="title_activity_about">About GIFT Israel</string>
@@ -22,11 +22,16 @@ Contact us: 0208 457 4429
     </string>
     <string name="title_activity_date_and_time">Record an Activity</string>
     <string name="title_activity_location">Record an Activity</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="date">Enter date here</string>
     <string name="time">Enter time here</string>
     <string name="title_activity_hours">Record an Activity</string>
     <string name="title_activity_description">Record an Activity</string>
+    <string name="title_activity_survey">GIFT Israel Survey</string>
+    <string name="title_activity_survey2">GIFT Israel Survey</string>
+    <string name="title_activity_survey3">GIFT Israel Survey</string>
+    <string name="title_activity_survey4">GIFT Israel Survey</string>
+    <string name="title_activity_finish_survey">Finish Survey</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

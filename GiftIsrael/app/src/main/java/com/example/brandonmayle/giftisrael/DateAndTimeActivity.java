@@ -69,7 +69,7 @@ public class DateAndTimeActivity extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "timePicker");
     }
 
-    public void nextActivity() {
+    private void nextActivity() {
         Intent intent = new Intent(this, HoursActivity.class);
         startActivity(intent);
     }
