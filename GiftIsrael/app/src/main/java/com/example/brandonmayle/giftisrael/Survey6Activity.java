@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-public class LocationActivity extends AppCompatActivity {
+public class Survey6Activity extends AppCompatActivity {
 
     int PLACE_PICKER_REQUEST = 1;
     protected GoogleApiClient mGoogleApiClient;
@@ -27,17 +29,17 @@ public class LocationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location);
+        setContentView(R.layout.activity_survey6);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button button = (Button) findViewById(R.id.locationButton);
+        Button button = (Button) findViewById(R.id.homePointButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
                 try {
-                    startActivityForResult(builder.build(LocationActivity.this), PLACE_PICKER_REQUEST);
+                    startActivityForResult(builder.build(Survey6Activity.this), PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException e) {
                     e.printStackTrace();
                 } catch (GooglePlayServicesNotAvailableException e) {
@@ -50,6 +52,14 @@ public class LocationActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText editText = (EditText) findViewById(R.id.travelDistanceField);
+                float radius = Float.parseFloat(editText.getText().toString());
+
+                SharedPreferences sharedPref = getSharedPreferences("com.example.brandonmayle.giftisrael.surveyResults", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putFloat("radius", radius);
+                editor.commit();
+
                 nextActivity();
             }
         });
@@ -70,19 +80,20 @@ public class LocationActivity extends AppCompatActivity {
                 String toastMsg = String.format("Place: %s", place.getName());
                 Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
 
-                SharedPreferences sharedPref = getSharedPreferences("com.example.brandonmayle.giftisrael.filePreferences", Context.MODE_PRIVATE);
+                SharedPreferences sharedPref = getSharedPreferences("com.example.brandonmayle.giftisrael.surveyResults", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("location", place.getName().toString());
+                editor.putFloat("latitude", (float) place.getLatLng().latitude);
+                editor.putFloat("longitude", (float) place.getLatLng().longitude);
                 editor.commit();
 
-                TextView textView = (TextView) findViewById(R.id.locationResult);
+                TextView textView = (TextView) findViewById(R.id.homePointText);
                 textView.setText(place.getName());
             }
         }
     }
 
     public void nextActivity() {
-        Intent intent = new Intent(this, DescriptionActivity.class);
+        Intent intent = new Intent(this, FinishSurveyActivity.class);
         startActivity(intent);
     }
 

@@ -5,42 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.brandonmayle.giftisrael.LocationActivity"
-    tools:showIn="@layout/activity_location">
+    tools:context="com.example.brandonmayle.giftisrael.Survey6Activity"
+    tools:showIn="@layout/activity_survey6">
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" >
 
         <TextView
-            android:id="@+id/locationText"
+            android:id="@+id/survey6Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please enter the location of your volunteering activity.\n\nנא להזין את מיקום פעילות ההתנדבות שלך."
+            android:text="Where do you live, and how far would you be willing to travel for a volunteering activity?"
             android:textAlignment="center"
             android:textSize="4mm"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp" />
+            android:layout_margin="16sp" />
 
         <Button
-            android:id="@+id/locationButton"
+            android:id="@+id/homePointButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Select Location"
+            android:text="Select Home Location"
             android:textSize="3.5mm" />
 
         <TextView
-            android:id="@+id/locationResult"
+            android:id="@+id/homePointText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/locationButton"
-            android:text=""
+            android:layout_below="@+id/homePointButton"
+            android:hint="Enter home point here"
+            android:textSize="3mm"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/travelDistanceField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/homePointText"
+            android:inputType="numberDecimal"
+            android:hint="Enter preferred travel distance here"
             android:textSize="3mm"
             android:textAlignment="center" />
 

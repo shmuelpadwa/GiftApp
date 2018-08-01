@@ -12,6 +12,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -66,6 +69,31 @@ public class RecordActivity extends AppCompatActivity {
         readCount();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.about:
+                about();
+                return true;
+            case R.id.contact:
+                contact();
+                return true;
+            case R.id.log_out:
+                signOut();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public void readCount() {
         uRef.child("count").addValueEventListener(new ValueEventListener() {
             @Override
@@ -86,27 +114,34 @@ public class RecordActivity extends AppCompatActivity {
     }
 
     public void queryDatabase(long value) {
-        for (int i = 0; i < value; ++i) {
-            DatabaseReference nameRef = activitiesRef.child("activity" + i).child("name");
-            nameRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String value = dataSnapshot.getValue(String.class);
-                    Log.d(TAG, "Value is: " + value);
+        if (value == 0) {
+            list.add("No items to display yet!");
+            updateList(list);
+        }
+        else {
+            list.clear();
+            for (int i = 0; i < value; ++i) {
+                DatabaseReference nameRef = activitiesRef.child("activity" + i).child("name");
+                nameRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String value = dataSnapshot.getValue(String.class);
+                        Log.d(TAG, "Value is: " + value);
 
-                    list.add(value);
-                    displayList(list);
-                }
+                        list.add(value);
+                        updateList(list);
+                    }
 
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    Log.w(TAG, "Failed to read value.", error.toException());
-                }
-            });
+                    @Override
+                    public void onCancelled(DatabaseError error) {
+                        Log.w(TAG, "Failed to read value.", error.toException());
+                    }
+                });
+            }
         }
     }
 
-    public void displayList(ArrayList<String> list) {
+    public void updateList(ArrayList<String> list) {
         ListView listView = (ListView) findViewById(R.id.logView);
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.listview, list);
         listView.setAdapter(adapter);
@@ -149,4 +184,18 @@ public class RecordActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void about() {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+    }
+
+    private void contact() {
+        DialogFragment newFragment = new ContactFragment();
+        newFragment.show(getSupportFragmentManager(), "contactPicker");
+    }
+
+    private void signOut() {
+        Intent intent = new Intent(this, SignOutActivity.class);
+        startActivity(intent);
+    }
 }

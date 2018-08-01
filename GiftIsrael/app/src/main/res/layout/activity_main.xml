@@ -102,18 +102,6 @@ tools:context="com.example.brandonmayle.giftisrael.MainActivity">
             app:srcCompat="@drawable/common_google_signin_btn_icon_dark"
             android:layout_centerInParent="true"/>
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@android:drawable/ic_menu_preferences"
-            tools:layout_editor_absoluteX="266sp"
-            tools:layout_editor_absoluteY="-57sp"
-            android:onClick="showPopup"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

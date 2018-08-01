@@ -20,6 +20,9 @@ Contact us: 0208 457 4429
 \n\n
 צור קשר: 0208 457 4429"
     </string>
+    <string name="contact"><b>Contact Us</b>
+    \n\n
+    </string>
     <string name="title_activity_date_and_time">Record an Activity</string>
     <string name="title_activity_location">Record an Activity</string>
     <string name="date">Enter date here</string>
@@ -34,4 +37,6 @@ Contact us: 0208 457 4429
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_survey5">Survey5Activity</string>
+    <string name="title_activity_survey6">Survey6Activity</string>
 </resources>

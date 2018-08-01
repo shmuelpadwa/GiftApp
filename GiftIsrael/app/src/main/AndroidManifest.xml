@@ -130,7 +130,25 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.brandonmayle.giftisrael.Survey3Activity" />
         </activity>
-        <activity android:name=".FinishSurveyActivity"></activity>
+        <activity android:name=".FinishSurveyActivity" />
+        <activity
+            android:name=".Survey5Activity"
+            android:label="@string/title_activity_survey5"
+            android:parentActivityName=".Survey4Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandonmayle.giftisrael.Survey4Activity" />
+        </activity>
+        <activity
+            android:name=".Survey6Activity"
+            android:label="@string/title_activity_survey6"
+            android:parentActivityName=".Survey5Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.brandonmayle.giftisrael.Survey5Activity" />
+        </activity>
     </application>
 
 </manifest>

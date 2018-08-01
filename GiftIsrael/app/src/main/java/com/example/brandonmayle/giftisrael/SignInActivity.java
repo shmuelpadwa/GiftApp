@@ -128,9 +128,7 @@ public class SignInActivity extends AppCompatActivity {
                             uRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.child("count").exists()) {
-
-                                    } else {
+                                    if (!dataSnapshot.child("count").exists()) {
                                         uRef.child("count").setValue(0);
                                     }
 

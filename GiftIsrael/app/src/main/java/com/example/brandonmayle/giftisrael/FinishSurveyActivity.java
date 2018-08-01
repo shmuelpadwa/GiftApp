@@ -35,7 +35,8 @@ public class FinishSurveyActivity extends AppCompatActivity {
 
         TextView prefsView = (TextView) findViewById(R.id.prefsView);
         prefsView.setText("1: " + sharedPref.getString("1", null) + "\n2: " + sharedPref.getString("2", null) +
-                "\n3: " + sharedPref.getString("3", null) + "\n4: " + sharedPref.getString("4", null));
+                "\n3: " + sharedPref.getString("3", null) + "\n4: " + sharedPref.getString("4", null) + "\n5: " +
+                sharedPref.getFloat("start time", 0) + "-" + sharedPref.getFloat("end time", 0) + "\n6: " + sharedPref.getFloat("radius", 0));
 
         Button button = (Button) findViewById(R.id.finishButton);
         button.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +50,7 @@ public class FinishSurveyActivity extends AppCompatActivity {
     private void writeToDatabase() {
         SharedPreferences sharedPref = getSharedPreferences("com.example.brandonmayle.giftisrael.surveyResults", Context.MODE_PRIVATE);
         DatabaseReference surveyRef = uRef.child("survey");
+        DatabaseReference prefsRef = uRef.child("preferences");
 
         DatabaseReference survey1Ref = surveyRef.child("1");
         survey1Ref.setValue(sharedPref.getString("1", null));
@@ -58,6 +60,16 @@ public class FinishSurveyActivity extends AppCompatActivity {
         survey3Ref.setValue(sharedPref.getString("3", null));
         DatabaseReference survey4Ref = surveyRef.child("4");
         survey4Ref.setValue(sharedPref.getString("4", null));
+        DatabaseReference startTimeRef = prefsRef.child("start time");
+        startTimeRef.setValue(sharedPref.getFloat("start time", 0));
+        DatabaseReference endTimeRef = prefsRef.child("end time");
+        endTimeRef.setValue(sharedPref.getFloat("end time", 0));
+        DatabaseReference latitudeRef = prefsRef.child("latitude");
+        latitudeRef.setValue(sharedPref.getFloat("latitude", 0));
+        DatabaseReference longitudeRef = prefsRef.child("longitude");
+        longitudeRef.setValue(sharedPref.getFloat("longitude", 0));
+        DatabaseReference radiusRef = prefsRef.child("radius");
+        radiusRef.setValue(sharedPref.getFloat("radius", 0));
 
         returnToMain();
     }

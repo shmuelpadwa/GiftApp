@@ -2,14 +2,16 @@ package com.example.brandonmayle.giftisrael;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 
-public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,25 +19,28 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         setContentView(R.layout.activity_main);
     }
 
-    public void showPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        popup.setOnMenuItemClickListener(this);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_main, popup.getMenu());
-        popup.show();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings, menu);
+        return true;
     }
 
     @Override
-    public boolean onMenuItemClick(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
         switch (item.getItemId()) {
             case R.id.about:
                 about();
+                return true;
+            case R.id.contact:
+                contact();
                 return true;
             case R.id.log_out:
                 signOut();
                 return true;
             default:
-                return false;
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -75,12 +80,17 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         goToUrl("https://jgift.org/");
     }
 
-    public void about() {
+    private void about() {
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
     }
 
-    public void signOut() {
+    private void contact() {
+        DialogFragment newFragment = new ContactFragment();
+        newFragment.show(getSupportFragmentManager(), "contactPicker");
+    }
+
+    private void signOut() {
         Intent intent = new Intent(this, SignOutActivity.class);
         startActivity(intent);
     }
