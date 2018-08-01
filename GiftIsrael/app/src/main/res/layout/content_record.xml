@@ -8,6 +8,18 @@
     tools:context="com.example.brandonmayle.giftisrael.RecordActivity"
     tools:showIn="@layout/activity_record">
 
+    <RelativeLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/logView"
         android:layout_width="wrap_content"

@@ -110,6 +110,9 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -132,6 +135,7 @@ public class SignInActivity extends AppCompatActivity {
                                         uRef.child("count").setValue(0);
                                     }
 
+                                    findViewById(R.id.progressBar).setVisibility(View.GONE);
                                     if (dataSnapshot.child("survey").exists()) {
                                         updateUI(user);
                                     } else {

@@ -146,6 +146,8 @@ public class RecordActivity extends AppCompatActivity {
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.listview, list);
         listView.setAdapter(adapter);
 
+        findViewById(R.id.progressBar).setVisibility(View.GONE);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {

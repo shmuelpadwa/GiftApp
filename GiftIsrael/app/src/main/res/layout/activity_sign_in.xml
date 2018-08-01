@@ -4,8 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#699873"
+    android:background="@drawable/background_repeat"
     tools:context="com.example.brandonmayle.giftisrael.SignInActivity">
+
+    <RelativeLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:indeterminate="true" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -15,7 +30,7 @@
             android:id="@+id/sign_in_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="24sp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
@@ -35,7 +50,8 @@
             android:text="Welcome to GIFT Israel!"
             android:textSize="4mm"
             android:textColor="#FFFFFF"
-            android:layout_above="@+id/imageView4"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="24sp"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>

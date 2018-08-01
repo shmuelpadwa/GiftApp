@@ -173,6 +173,8 @@ public class SearchActivity extends AppCompatActivity {
             list.add(string);
         }
 
+        findViewById(R.id.progressBar).setVisibility(View.GONE);
+
         ListView listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.listview, list);
         listView.setAdapter(adapter);
