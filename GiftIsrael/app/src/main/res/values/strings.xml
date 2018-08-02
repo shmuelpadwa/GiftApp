@@ -19,9 +19,10 @@ Contact us: 0208 457 4429
 <b>גיפת</b> שואפת לעורר אלפי מתנדבים להושיט יד מסייעת, לספק חבילות מזון לשבוע ולסייע ליותר מאלפיים חברי הקהילה.
 \n\n
 צור קשר: 0208 457 4429"
-    </string>
     <string name="contact"><b>Contact Us</b>
     \n\n
+        Email: hannah@jgift.org\n
+        Phone: 0545665248
     </string>
     <string name="title_activity_date_and_time">Record an Activity</string>
     <string name="title_activity_location">Record an Activity</string>
